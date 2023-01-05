@@ -31,7 +31,10 @@ window.addEventListener("load", function(){
   
   let limpando = false;
   let ordenacao = campo_ordenacao.value;
-  let pagina = pagina_selecionada.innerText;
+  let pagina = null;
+  if(typeof pagina_selecionada != "undefined"){
+    pagina = pagina_selecionada.innerText;
+  }
   let contador_de_filtro = 0;
   
   campo_filtro_nome.addEventListener("keyup", function(){
@@ -124,6 +127,8 @@ window.addEventListener("load", function(){
             div_lista_de_pessoas.innerHTML = resposta["lista"];
             div_paginacao_de_baixo_da_lista_de_pessoas.innerHTML = resposta["paginacao"];
             
+            atualizando_botoes_de_radio_de_um_popup("div_editar_pessoa");
+            
             links_da_paginacao = document.querySelectorAll("#div_paginacao_de_cima_da_lista_de_pessoas>a, #div_paginacao_de_baixo_da_lista_de_pessoas>a");
             pagina_selecionada = document.getElementsByClassName("pagina_selecionada")[0];
             if(typeof pagina_selecionada != "undefined"){
@@ -201,6 +206,8 @@ window.addEventListener("load", function(){
             div_partes_da_lista_de_pessoas.classList.remove("tag_oculta"); //Opcional
             div_lista_de_pessoas.innerHTML = resposta["lista"];
             div_paginacao_de_baixo_da_lista_de_pessoas.innerHTML = resposta["paginacao"];
+            
+            atualizando_botoes_de_radio_de_um_popup("div_editar_pessoa");
             
             links_da_paginacao = document.querySelectorAll("#div_paginacao_de_cima_da_lista_de_pessoas>a, #div_paginacao_de_baixo_da_lista_de_pessoas>a");
             pagina_selecionada = document.getElementsByClassName("pagina_selecionada")[0];
@@ -301,6 +308,8 @@ window.addEventListener("load", function(){
             //div_partes_da_lista_de_pessoas.classList.remove("tag_oculta"); //Opcional
             div_lista_de_pessoas.innerHTML = resposta["lista"];
             div_paginacao_de_baixo_da_lista_de_pessoas.innerHTML = resposta["paginacao"];
+            
+            atualizando_botoes_de_radio_de_um_popup("div_editar_pessoa");
             
             links_da_paginacao = document.querySelectorAll("#div_paginacao_de_cima_da_lista_de_pessoas>a, #div_paginacao_de_baixo_da_lista_de_pessoas>a");
             pagina_selecionada = document.getElementsByClassName("pagina_selecionada")[0];
@@ -441,6 +450,8 @@ window.addEventListener("load", function(){
               //div_partes_da_lista_de_pessoas.classList.remove("tag_oculta"); //Opcional
               div_lista_de_pessoas.innerHTML = resposta["lista"];
               div_paginacao_de_baixo_da_lista_de_pessoas.innerHTML = resposta["paginacao"];
+              
+              atualizando_botoes_de_radio_de_um_popup("div_editar_pessoa");
               
               links_da_paginacao = document.querySelectorAll("#div_paginacao_de_cima_da_lista_de_pessoas>a, #div_paginacao_de_baixo_da_lista_de_pessoas>a");
               pagina_selecionada = document.getElementsByClassName("pagina_selecionada")[0];
@@ -648,6 +659,8 @@ window.addEventListener("load", function(){
             div_paginacao_de_cima_da_lista_de_pessoas.innerHTML = resposta["paginacao"];
             div_lista_de_pessoas.innerHTML = resposta["lista"];
             div_paginacao_de_baixo_da_lista_de_pessoas.innerHTML = resposta["paginacao"];
+            
+            atualizando_botoes_de_radio_de_um_popup("div_editar_pessoa");
             
             links_da_paginacao = document.querySelectorAll("#div_paginacao_de_cima_da_lista_de_pessoas>a, #div_paginacao_de_baixo_da_lista_de_pessoas>a");
             pagina_selecionada = document.getElementsByClassName("pagina_selecionada")[0];
@@ -1245,6 +1258,8 @@ window.addEventListener("load", function(){
               div_lista_de_pessoas.innerHTML = resposta["lista"];
               div_paginacao_de_baixo_da_lista_de_pessoas.innerHTML = resposta["paginacao"];
               
+              atualizando_botoes_de_radio_de_um_popup("div_editar_pessoa");
+              
               const div_editar_desta_pessoa = document.getElementById("div_editar_pessoa_do_id_" + id_da_pessoa);
               if(div_editar_desta_pessoa !== null){
                 div_editar_pessoa.innerHTML = div_editar_desta_pessoa.innerHTML;
@@ -1445,6 +1460,8 @@ window.addEventListener("load", function(){
               div_paginacao_de_cima_da_lista_de_pessoas.innerHTML = resposta["paginacao"];
               div_lista_de_pessoas.innerHTML = resposta["lista"];
               div_paginacao_de_baixo_da_lista_de_pessoas.innerHTML = resposta["paginacao"];
+              
+              atualizando_botoes_de_radio_de_um_popup("div_editar_pessoa");
               
               links_da_paginacao = document.querySelectorAll("#div_paginacao_de_cima_da_lista_de_pessoas>a, #div_paginacao_de_baixo_da_lista_de_pessoas>a");
               pagina_selecionada = document.getElementsByClassName("pagina_selecionada")[0];
@@ -1754,6 +1771,14 @@ window.addEventListener("load", function(){
     
     div_calendario.classList.add("tag_oculta");
   });
+  
+  function atualizando_botoes_de_radio_de_um_popup(id_da_div){
+    const div_popup = document.getElementById(id_da_div);
+    const botoes_de_radio = div_popup.querySelectorAll("input[type='radio'][checked='checked']");
+    for(let i = 0; i < botoes_de_radio.length; i++){
+      botoes_de_radio[i].checked = true;
+    }
+  }
   
   /* Ocultando popups */
   div_calendario.addEventListener("click", function(){
