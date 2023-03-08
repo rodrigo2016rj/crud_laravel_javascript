@@ -113,7 +113,7 @@ window.addEventListener("load", function(){
     url_mais += "&ordenacao=" + ordenacao;
     let url = "/tudo_em_um/mostrar_pessoas_ajax" + url_mais;
     let dados_post = null;
-    let resposta = Array();
+    let resposta = null;
     conexao_ajax.onreadystatechange = function(){
       if(conexao_ajax.readyState == 4){
         if(conexao_ajax.status == 200){
@@ -122,10 +122,10 @@ window.addEventListener("load", function(){
           if(numero_desta_acao_filtrar >= contador_de_filtro){
             span_status_da_busca.innerText = "";
             span_status_da_busca.classList.add("tag_oculta");
-            div_paginacao_de_cima_da_lista_de_pessoas.innerHTML = resposta["paginacao"];
+            div_paginacao_de_cima_da_lista_de_pessoas.innerHTML = resposta.paginacao;
             //div_partes_da_lista_de_pessoas.classList.remove("tag_oculta"); //Opcional
-            div_lista_de_pessoas.innerHTML = resposta["lista"];
-            div_paginacao_de_baixo_da_lista_de_pessoas.innerHTML = resposta["paginacao"];
+            div_lista_de_pessoas.innerHTML = resposta.lista;
+            div_paginacao_de_baixo_da_lista_de_pessoas.innerHTML = resposta.paginacao;
             
             atualizando_botoes_de_radio_de_um_popup("div_editar_pessoa");
             
@@ -193,7 +193,7 @@ window.addEventListener("load", function(){
     let url_mais = "";
     let url = "/tudo_em_um/mostrar_pessoas_ajax" + url_mais;
     let dados_post = null;
-    let resposta = Array();
+    let resposta = null;
     conexao_ajax.onreadystatechange = function(){
       if(conexao_ajax.readyState == 4){
         if(conexao_ajax.status == 200){
@@ -202,10 +202,10 @@ window.addEventListener("load", function(){
           if(numero_desta_acao_filtrar >= contador_de_filtro){
             span_status_da_busca.innerText = "";
             span_status_da_busca.classList.add("tag_oculta");
-            div_paginacao_de_cima_da_lista_de_pessoas.innerHTML = resposta["paginacao"];
+            div_paginacao_de_cima_da_lista_de_pessoas.innerHTML = resposta.paginacao;
             div_partes_da_lista_de_pessoas.classList.remove("tag_oculta"); //Opcional
-            div_lista_de_pessoas.innerHTML = resposta["lista"];
-            div_paginacao_de_baixo_da_lista_de_pessoas.innerHTML = resposta["paginacao"];
+            div_lista_de_pessoas.innerHTML = resposta.lista;
+            div_paginacao_de_baixo_da_lista_de_pessoas.innerHTML = resposta.paginacao;
             
             atualizando_botoes_de_radio_de_um_popup("div_editar_pessoa");
             
@@ -295,7 +295,7 @@ window.addEventListener("load", function(){
     url_mais += "&pagina=" + pagina;
     let url = "/tudo_em_um/mostrar_pessoas_ajax" + url_mais;
     let dados_post = null;
-    let resposta = Array();
+    let resposta = null;
     conexao_ajax.onreadystatechange = function(){
       if(conexao_ajax.readyState == 4){
         if(conexao_ajax.status == 200){
@@ -304,10 +304,10 @@ window.addEventListener("load", function(){
           if(numero_desta_acao_filtrar >= contador_de_filtro){
             span_status_da_busca.innerText = "";
             span_status_da_busca.classList.add("tag_oculta");
-            div_paginacao_de_cima_da_lista_de_pessoas.innerHTML = resposta["paginacao"];
+            div_paginacao_de_cima_da_lista_de_pessoas.innerHTML = resposta.paginacao;
             //div_partes_da_lista_de_pessoas.classList.remove("tag_oculta"); //Opcional
-            div_lista_de_pessoas.innerHTML = resposta["lista"];
-            div_paginacao_de_baixo_da_lista_de_pessoas.innerHTML = resposta["paginacao"];
+            div_lista_de_pessoas.innerHTML = resposta.lista;
+            div_paginacao_de_baixo_da_lista_de_pessoas.innerHTML = resposta.paginacao;
             
             atualizando_botoes_de_radio_de_um_popup("div_editar_pessoa");
             
@@ -437,7 +437,7 @@ window.addEventListener("load", function(){
       url_mais += "&ordenacao=" + ordenacao;
       let url = "/tudo_em_um/mostrar_pessoas_ajax" + url_mais;
       let dados_post = null;
-      let resposta = Array();
+      let resposta = null;
       conexao_ajax.onreadystatechange = function(){
         if(conexao_ajax.readyState == 4){
           if(conexao_ajax.status == 200){
@@ -446,10 +446,10 @@ window.addEventListener("load", function(){
             if(numero_desta_acao_filtrar >= contador_de_filtro){
               span_status_da_busca.innerText = "";
               span_status_da_busca.classList.add("tag_oculta");
-              div_paginacao_de_cima_da_lista_de_pessoas.innerHTML = resposta["paginacao"];
+              div_paginacao_de_cima_da_lista_de_pessoas.innerHTML = resposta.paginacao;
               //div_partes_da_lista_de_pessoas.classList.remove("tag_oculta"); //Opcional
-              div_lista_de_pessoas.innerHTML = resposta["lista"];
-              div_paginacao_de_baixo_da_lista_de_pessoas.innerHTML = resposta["paginacao"];
+              div_lista_de_pessoas.innerHTML = resposta.lista;
+              div_paginacao_de_baixo_da_lista_de_pessoas.innerHTML = resposta.paginacao;
               
               atualizando_botoes_de_radio_de_um_popup("div_editar_pessoa");
               
@@ -602,24 +602,24 @@ window.addEventListener("load", function(){
                       data_de_nascimento: data_de_nascimento, sexo: sexo, id_do_setor: id_do_setor, email: email, 
                       telefone_fixo: telefone_fixo, telefone_movel: telefone_movel, 
                       telefone_estrangeiro: telefone_estrangeiro, _token: anti_csrf};
-    let resposta = Array();
+    let resposta = null;
     conexao_ajax.onreadystatechange = function(){
       if(conexao_ajax.readyState == 4){
         if(conexao_ajax.status == 200){
           resposta = JSON.parse(conexao_ajax.responseText);
           
-          if(typeof resposta["mensagem_de_falha"] != "undefined"){
+          if(typeof resposta.mensagem_de_falha != "undefined"){
             span_mensagem_cadastrar_pessoa.setAttribute("class", "mensagem_de_falha");
-            span_mensagem_cadastrar_pessoa.innerText = resposta["mensagem_de_falha"];
+            span_mensagem_cadastrar_pessoa.innerText = resposta.mensagem_de_falha;
             
             span_status_da_busca.innerText = "";
             span_status_da_busca.classList.add("tag_oculta");
             //div_partes_da_lista_de_pessoas.classList.remove("tag_oculta"); //Opcional
             return;
           }
-          if(typeof resposta["mensagem_de_sucesso"] != "undefined"){
+          if(typeof resposta.mensagem_de_sucesso != "undefined"){
             span_mensagem_cadastrar_pessoa.setAttribute("class", "mensagem_de_sucesso");
-            span_mensagem_cadastrar_pessoa.innerText = resposta["mensagem_de_sucesso"];
+            span_mensagem_cadastrar_pessoa.innerText = resposta.mensagem_de_sucesso;
             
             campo_nome.value = "";
             campo_sobrenome.value = "";
@@ -656,9 +656,9 @@ window.addEventListener("load", function(){
             span_status_da_busca.innerText = "";
             span_status_da_busca.classList.add("tag_oculta");
             //div_partes_da_lista_de_pessoas.classList.remove("tag_oculta"); //Opcional
-            div_paginacao_de_cima_da_lista_de_pessoas.innerHTML = resposta["paginacao"];
-            div_lista_de_pessoas.innerHTML = resposta["lista"];
-            div_paginacao_de_baixo_da_lista_de_pessoas.innerHTML = resposta["paginacao"];
+            div_paginacao_de_cima_da_lista_de_pessoas.innerHTML = resposta.paginacao;
+            div_lista_de_pessoas.innerHTML = resposta.lista;
+            div_paginacao_de_baixo_da_lista_de_pessoas.innerHTML = resposta.paginacao;
             
             atualizando_botoes_de_radio_de_um_popup("div_editar_pessoa");
             
@@ -1231,32 +1231,32 @@ window.addEventListener("load", function(){
                       id_do_setor: id_do_setor, email: email, telefone_fixo: telefone_fixo, 
                       telefone_movel: telefone_movel, telefone_estrangeiro: telefone_estrangeiro, 
                       id_da_pessoa: id_da_pessoa, _token: anti_csrf};
-    let resposta = Array();
+    let resposta = null;
     conexao_ajax.onreadystatechange = function(){
       if(conexao_ajax.readyState == 4){
         if(conexao_ajax.status == 200){
           resposta = JSON.parse(conexao_ajax.responseText);
           
-          if(typeof resposta["mensagem_de_falha"] != "undefined"){
+          if(typeof resposta.mensagem_de_falha != "undefined"){
             span_mensagem_editar_pessoa.classList.add("mensagem_de_falha");
-            span_mensagem_editar_pessoa.innerText = resposta["mensagem_de_falha"];
+            span_mensagem_editar_pessoa.innerText = resposta.mensagem_de_falha;
             
             span_status_da_busca.innerText = "";
             span_status_da_busca.classList.add("tag_oculta");
             //div_partes_da_lista_de_pessoas.classList.remove("tag_oculta"); //Opcional
             return;
           }
-          if(typeof resposta["mensagem_de_sucesso"] != "undefined"){
+          if(typeof resposta.mensagem_de_sucesso != "undefined"){
             span_mensagem_editar_pessoa.classList.add("mensagem_de_sucesso");
-            span_mensagem_editar_pessoa.innerText = resposta["mensagem_de_sucesso"];
+            span_mensagem_editar_pessoa.innerText = resposta.mensagem_de_sucesso;
             
             if(numero_desta_acao_filtrar >= contador_de_filtro){
               span_status_da_busca.innerText = "";
               span_status_da_busca.classList.add("tag_oculta");
               //div_partes_da_lista_de_pessoas.classList.remove("tag_oculta"); //Opcional
-              div_paginacao_de_cima_da_lista_de_pessoas.innerHTML = resposta["paginacao"];
-              div_lista_de_pessoas.innerHTML = resposta["lista"];
-              div_paginacao_de_baixo_da_lista_de_pessoas.innerHTML = resposta["paginacao"];
+              div_paginacao_de_cima_da_lista_de_pessoas.innerHTML = resposta.paginacao;
+              div_lista_de_pessoas.innerHTML = resposta.lista;
+              div_paginacao_de_baixo_da_lista_de_pessoas.innerHTML = resposta.paginacao;
               
               atualizando_botoes_de_radio_de_um_popup("div_editar_pessoa");
               
@@ -1270,7 +1270,7 @@ window.addEventListener("load", function(){
               
               const span_mensagem_editar_pessoa_apos_atualizacao = div_mensagem_apos_atualizacao.querySelector(".span_mensagem_editar_pessoa");
               span_mensagem_editar_pessoa_apos_atualizacao.classList.add("mensagem_de_sucesso");
-              span_mensagem_editar_pessoa_apos_atualizacao.innerText = resposta["mensagem_de_sucesso"];
+              span_mensagem_editar_pessoa_apos_atualizacao.innerText = resposta.mensagem_de_sucesso;
               
               links_da_paginacao = document.querySelectorAll("#div_paginacao_de_cima_da_lista_de_pessoas>a, #div_paginacao_de_baixo_da_lista_de_pessoas>a");
               pagina_selecionada = document.getElementsByClassName("pagina_selecionada")[0];
@@ -1434,32 +1434,32 @@ window.addEventListener("load", function(){
     let dados_post = {filtro_nome: filtro_nome, filtro_cpf: filtro_cpf, filtro_data_de_nascimento: filtro_data_de_nascimento, 
                       filtro_id_do_setor: filtro_id_do_setor, quantidade_por_pagina: quantidade_por_pagina, ordenacao: ordenacao, 
                       pagina: pagina, id_da_pessoa: id_da_pessoa, _token: anti_csrf};
-    let resposta = Array();
+    let resposta = null;
     conexao_ajax.onreadystatechange = function(){
       if(conexao_ajax.readyState == 4){
         if(conexao_ajax.status == 200){
           resposta = JSON.parse(conexao_ajax.responseText);
           
-          if(typeof resposta["mensagem_de_falha"] != "undefined"){
+          if(typeof resposta.mensagem_de_falha != "undefined"){
             span_mensagem_excluir_pessoa.classList.add("mensagem_de_falha");
-            span_mensagem_excluir_pessoa.innerText = resposta["mensagem_de_falha"];
+            span_mensagem_excluir_pessoa.innerText = resposta.mensagem_de_falha;
             
             span_status_da_busca.innerText = "";
             span_status_da_busca.classList.add("tag_oculta");
             //div_partes_da_lista_de_pessoas.classList.remove("tag_oculta"); //Opcional
             return;
           }
-          if(typeof resposta["mensagem_de_sucesso"] != "undefined"){
+          if(typeof resposta.mensagem_de_sucesso != "undefined"){
             span_mensagem_excluir_pessoa.classList.add("mensagem_de_sucesso");
-            span_mensagem_excluir_pessoa.innerText = resposta["mensagem_de_sucesso"];
+            span_mensagem_excluir_pessoa.innerText = resposta.mensagem_de_sucesso;
             
             if(numero_desta_acao_filtrar >= contador_de_filtro){
               span_status_da_busca.innerText = "";
               span_status_da_busca.classList.add("tag_oculta");
               //div_partes_da_lista_de_pessoas.classList.remove("tag_oculta"); //Opcional
-              div_paginacao_de_cima_da_lista_de_pessoas.innerHTML = resposta["paginacao"];
-              div_lista_de_pessoas.innerHTML = resposta["lista"];
-              div_paginacao_de_baixo_da_lista_de_pessoas.innerHTML = resposta["paginacao"];
+              div_paginacao_de_cima_da_lista_de_pessoas.innerHTML = resposta.paginacao;
+              div_lista_de_pessoas.innerHTML = resposta.lista;
+              div_paginacao_de_baixo_da_lista_de_pessoas.innerHTML = resposta.paginacao;
               
               atualizando_botoes_de_radio_de_um_popup("div_editar_pessoa");
               
