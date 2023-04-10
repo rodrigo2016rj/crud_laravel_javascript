@@ -29,7 +29,6 @@ window.addEventListener("load", function(){
   const div_cadastrar_pessoa = document.getElementById("div_cadastrar_pessoa");
   const div_editar_pessoa = document.getElementById("div_editar_pessoa");
   
-  let limpando = false;
   let ordenacao = campo_ordenacao.value;
   let pagina = null;
   if(typeof pagina_selecionada != "undefined"){
@@ -53,17 +52,11 @@ window.addEventListener("load", function(){
     }, 0);
   });
   caixa_de_selecao_filtro_setor.addEventListener("change", function(){
-    if(limpando){
-      return;
-    }
     setTimeout(function(){
       botao_buscar.click();
     }, 0);
   });
   caixa_de_selecao_quantidade_por_pagina.addEventListener("change", function(){
-    if(limpando){
-      return;
-    }
     setTimeout(function(){
       botao_buscar.click();
     }, 0);
@@ -156,8 +149,6 @@ window.addEventListener("load", function(){
   });
   
   botao_limpar.addEventListener("click", function(){
-    limpando = true;
-    
     campo_filtro_nome.value = "";
     campo_filtro_cpf.value = "";
     campo_filtro_data_de_nascimento.value = "";
@@ -233,8 +224,6 @@ window.addEventListener("load", function(){
     conexao_ajax.open(tipo, url, true);
     conexao_ajax.setRequestHeader("Content-Type", "application/json");
     conexao_ajax.send(JSON.stringify(dados_post));
-    
-    limpando = false;
   });
   
   eventos_dos_links_da_paginacao();
@@ -637,8 +626,6 @@ window.addEventListener("load", function(){
             campo_telefone_estrangeiro.value = "";
           }
           if(numero_desta_acao_filtrar >= contador_de_filtro){
-            limpando = true;
-            
             campo_filtro_nome.value = "";
             campo_filtro_cpf.value = "";
             campo_filtro_data_de_nascimento.value = "";
@@ -679,8 +666,6 @@ window.addEventListener("load", function(){
             
             links_excluir_pessoa = document.getElementsByClassName("link_excluir_pessoa");
             eventos_dos_links_de_excluir_pessoa();
-            
-            limpando = false;
           }
         }
       }
@@ -1257,8 +1242,6 @@ window.addEventListener("load", function(){
               div_paginacao_de_cima_da_lista_de_pessoas.innerHTML = resposta.paginacao;
               div_lista_de_pessoas.innerHTML = resposta.lista;
               div_paginacao_de_baixo_da_lista_de_pessoas.innerHTML = resposta.paginacao;
-              
-              atualizando_botoes_de_radio_de_um_popup("div_editar_pessoa");
               
               const div_editar_desta_pessoa = document.getElementById("div_editar_pessoa_do_id_" + id_da_pessoa);
               if(div_editar_desta_pessoa !== null){
