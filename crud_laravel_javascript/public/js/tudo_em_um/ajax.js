@@ -1571,7 +1571,7 @@ window.addEventListener("load", function(){
       div_calendario.style.position = "absolute";
       div_calendario.style.top = posicao_y + "px";
       div_calendario.style.left = posicao_x + "px";
-      if(window.innerWidth <= 640){
+      if(window.innerWidth <= 400){
         const largura_do_calendario = 348; //Em pixels.
         div_calendario.style.left = window.innerWidth / 2 - largura_do_calendario / 2 + "px";
       }
@@ -1813,6 +1813,49 @@ window.addEventListener("load", function(){
       div_excluir_pessoa.classList.add("tag_oculta");
     }else{
       ocultar_div_excluir_pessoa = true;
+    }
+  });
+  
+  /* Comportamento dos popups quando a janela é redimensionada */
+  window.addEventListener("resize", function(){
+    div_calendario.classList.add("tag_oculta");
+    
+    let popups_para_reposicionar = Array();
+    if(!div_cadastrar_pessoa.classList.contains("tag_oculta")){
+      popups_para_reposicionar.push(div_cadastrar_pessoa);
+    }
+    if(!div_visualizar_pessoa.classList.contains("tag_oculta")){
+      popups_para_reposicionar.push(div_visualizar_pessoa);
+    }
+    if(!div_editar_pessoa.classList.contains("tag_oculta")){
+      popups_para_reposicionar.push(div_editar_pessoa);
+    }
+    if(!div_excluir_pessoa.classList.contains("tag_oculta")){
+      popups_para_reposicionar.push(div_excluir_pessoa);
+    }
+    
+    let largura_da_tag_html = 0;
+    var estilo_computado = window.getComputedStyle(tag_html);
+    largura_da_tag_html += parseInt(estilo_computado.width, 10);
+    
+    for(let i = 0; i < popups_para_reposicionar.length; i++){
+      let popup = popups_para_reposicionar[i];
+      
+      var estilo_computado = window.getComputedStyle(popup);
+      
+      let largura_da_div = 0;
+      largura_da_div += parseInt(estilo_computado.borderLeftWidth, 10);
+      largura_da_div += parseInt(estilo_computado.paddingLeft, 10);
+      largura_da_div += parseInt(estilo_computado.width, 10);
+      largura_da_div += parseInt(estilo_computado.paddingRight, 10);
+      largura_da_div += parseInt(estilo_computado.borderRightWidth, 10);
+      
+      var posicao_x = largura_da_tag_html / 2 - largura_da_div / 2;
+      if(window.innerWidth <= largura_da_div){
+        posicao_x = 0;
+      }
+      
+      popup.style.left = posicao_x + "px";
     }
   });
 });

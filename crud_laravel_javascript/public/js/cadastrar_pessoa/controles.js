@@ -101,7 +101,7 @@ window.addEventListener("load", function(){
       div_calendario.style.position = "absolute";
       div_calendario.style.top = posicao_y + "px";
       div_calendario.style.left = posicao_x + "px";
-      if(window.innerWidth <= 640){
+      if(window.innerWidth <= 400){
         const largura_do_calendario = 348; //Em pixels.
         div_calendario.style.left = window.innerWidth / 2 - largura_do_calendario / 2 + "px";
       }
@@ -509,5 +509,11 @@ window.addEventListener("load", function(){
     }else{
       ocultar_div_descricoes_dos_setores = true;
     }
+  });
+  
+  /* Comportamento dos popups quando a janela é redimensionada */
+  window.addEventListener("resize", function(){
+    div_calendario.classList.add("tag_oculta");
+    div_descricoes_dos_setores.classList.add("tag_oculta");
   });
 });
